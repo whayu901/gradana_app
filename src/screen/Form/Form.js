@@ -132,7 +132,7 @@ const Form = () => {
       </View>
       <Portal>
         <Dialog visible={openModal} onDismiss={() => _closeModal()}>
-          <Dialog.Title>Success</Dialog.Title>
+          <Dialog.Title>Berhasil</Dialog.Title>
           <Dialog.Content>
             <Text style={{ fontWeight: 'bold' }}>
               {formType.postList}
