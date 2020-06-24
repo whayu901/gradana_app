@@ -7,6 +7,7 @@ import Navigation from './src/navigation';
 import { persistor, store } from './src/redux/store';
 
 const App = () => {
+  console.disableYellowBox = true;
   return (
     <StoreProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
