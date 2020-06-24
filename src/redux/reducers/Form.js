@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case GET_DATA_PENDING:
       return { ...state, isLoadingDataList: true };
     case GET_DATA_SUCCESS:
-      dataList = [];
+      dataList = [{ value: "", label: "Select Option" }];
       action.payload.map((item) => {
         dataList = [
           ...dataList,

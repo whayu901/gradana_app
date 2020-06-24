@@ -30,9 +30,15 @@ const Form = () => {
   }, [dispatch])
 
   const _handleSubmit = () => {
-    dispatch(PostDataList(data, () => {
-      setOpenModal(true);
-    }));
+    if (data.firstname == "" && data.lastName == "" && data.province == ""
+      && data.district == "" && data.constituency == "" && data.village == ""
+      && data.salary == "") {
+      Alert.alert("Form masih ada yang kosong")
+    } else {
+      dispatch(PostDataList(data, () => {
+        setOpenModal(true);
+      }));
+    }
   }
 
   const _closeModal = () => {
