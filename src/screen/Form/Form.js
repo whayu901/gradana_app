@@ -46,7 +46,6 @@ const Form = () => {
     setData(inputData);
   }
 
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
