@@ -44,8 +44,9 @@ const Table = () => {
             style={styles.pagination}>
             <Text style={{ color: tableType.page !== 1 ? "red" : "grey" }}
               onPress={() => { tableType.page !== 1 ? _currentPage() : null }}>Prev</Text>
-            <Text>{tableType.page} of 8</Text>
-            <Text style={{ color: "red" }} onPress={() => _nextPage()}>Next</Text>
+            <Text>{tableType.page} of {tableType.totalPage}</Text>
+            <Text style={{ color: tableType.page !== tableType.totalPage ? "red" : "grey" }}
+              onPress={() => { tableType.page !== tableType.totalPage ? _nextPage() : null }}>Next</Text>
           </View>
         </DataTable>
       </View>

@@ -7,7 +7,8 @@ import {
 const initialState = {
   dataTable: [],
   isLoadingTable: false,
-  page: 0
+  page: 0,
+  totalPage: 0
 }
 
 export default (state = initialState, action) => {
@@ -15,7 +16,12 @@ export default (state = initialState, action) => {
     case GET_TABLE_PENDING:
       return { ...state, isLoadingTable: true };
     case GET_TABLE_SUCCESS:
-      return { ...state, isLoadingTable: false, dataTable: action.payload, page: action.page };
+      return {
+        ...state, isLoadingTable: false,
+        dataTable: action.payload,
+        page: action.page,
+        totalPage: action.totalPage
+      };
     case GET_TABLE_ERROR:
       return { ...state, isLoadingTable: false };
     default:

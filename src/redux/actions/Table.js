@@ -9,7 +9,10 @@ export const getTable = (page) => async dispatch => {
     dispatch({ type: GET_TABLE_PENDING })
 
     const res = await API.tableDummy(page);
-    dispatch({ type: GET_TABLE_SUCCESS, payload: res.data.data, page: res.data.currentPage })
+    dispatch({
+      type: GET_TABLE_SUCCESS, payload: res.data.data, page: res.data.currentPage,
+      totalPage: res.data.totalPage
+    })
   }
   catch {
     dispatch({ type: GET_TABLE_ERROR })
