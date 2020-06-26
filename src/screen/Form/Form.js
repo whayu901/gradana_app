@@ -5,7 +5,10 @@ import DatePicker from 'react-native-datepicker';
 import { useDispatch, useSelector } from "react-redux";
 import { Picker } from '@react-native-community/picker'
 
-import { getDataList, PostDataList } from '../../redux/actions'
+import {
+  PostDataList, getProvince,
+  getDistrict, getVillage, getConstituency
+} from '../../redux/actions'
 import styles from './styles'
 
 const Form = () => {
@@ -26,24 +29,39 @@ const Form = () => {
   const formType = useSelector(state => state.Form);
 
   useEffect(() => {
-    dispatch(getDataList());
+    dispatch(getProvince());
   }, [dispatch])
 
   const _handleSubmit = () => {
-    if (data.firstname == "" && data.lastName == "" && data.province == ""
-      && data.district == "" && data.constituency == "" && data.village == ""
-      && data.salary == "") {
+    if (data.firstname == "" || data.lastName == "" || data.province == ""
+      || data.district == "" || data.constituency == "" || data.village == ""
+      || data.salary == "") {
       Alert.alert("Form masih ada yang kosong")
     } else {
       dispatch(PostDataList(data, () => {
         setOpenModal(true);
       }));
     }
-  }
+  };
 
   const _closeModal = () => {
     setOpenModal(false);
     setData(inputData);
+  };
+
+  const _getDistrict = (id) => {
+    dispatch(getDistrict(id));
+    setData({ ...data, province: id })
+  };
+
+  const _getConstituency = (id) => {
+    dispatch(getConstituency(id));
+    setData({ ...data, district: id });
+  };
+
+  const _getVillage = (id) => {
+    dispatch(getVillage(id));
+    setData({ ...data, constituency: id });
   }
 
   return (
@@ -76,46 +94,78 @@ const Form = () => {
           <View style={styles.input}>
             <Text style={styles.label}>Province</Text>
             <Picker
-              onValueChange={prov => setData({ ...data, province: prov })}
+              onValueChange={prov => _getDistrict(prov)}
               selectedValue={data.province}
               style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
-              {formType.dataList.map((e, k) => (
+              {formType.dataProvince.map((e, k) => (
                 <Picker.Item key={k} label={e.label} value={e.value} />
               ))}
             </Picker>
           </View>
           <View style={styles.input}>
             <Text style={styles.label}>District</Text>
-            <Picker
-              onValueChange={disct => setData({ ...data, district: disct })}
-              selectedValue={data.district}
-              style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
-              {formType.dataList.map((e, k) => (
-                <Picker.Item key={k} label={e.label} value={e.value} />
-              ))}
-            </Picker>
+            {
+              formType.dataDistrict ?
+                <Picker
+                  onValueChange={disct => _getConstituency(disct)}
+                  selectedValue={data.district}
+                  style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
+                  {formType.dataDistrict.map((e, k) => (
+                    <Picker.Item key={k} label={e.label} value={e.value} />
+                  ))}
+                </Picker>
+                :
+                <Picker
+                  style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}
+                  onValueChange={disct => setData({ ...data, district: disct })}
+                  selectedValue={data.district}
+                >
+                  <Picker.Item label={"Select Option"} value="" />
+                </Picker>
+            }
           </View>
           <View style={styles.input}>
             <Text style={styles.label}>Constituency</Text>
-            <Picker
-              onValueChange={constituency => setData({ ...data, constituency: constituency })}
-              selectedValue={data.constituency}
-              style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
-              {formType.dataList.map((e, k) => (
-                <Picker.Item key={k} label={e.label} value={e.value} />
-              ))}
-            </Picker>
+            {
+              formType.dataConstitusi ?
+                <Picker
+                  onValueChange={constituency => _getVillage(constituency)}
+                  selectedValue={data.constituency}
+                  style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
+                  {formType.dataConstitusi.map((e, k) => (
+                    <Picker.Item key={k} label={e.label} value={e.value} />
+                  ))}
+                </Picker>
+                :
+                <Picker
+                  style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}
+                  onValueChange={disct => setData({ ...data, constituency: disct })}
+                  selectedValue={data.constituency}
+                >
+                  <Picker.Item label={"Select Option"} value="" />
+                </Picker>
+            }
           </View>
           <View style={styles.input}>
             <Text style={styles.label}>Village</Text>
-            <Picker
-              onValueChange={village => setData({ ...data, village })}
-              selectedValue={data.village}
-              style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
-              {formType.dataList.map((e, k) => (
-                <Picker.Item key={k} label={e.label} value={e.value} />
-              ))}
-            </Picker>
+            {formType.dataVillage ?
+              <Picker
+                onValueChange={village => setData({ ...data, village })}
+                selectedValue={data.village}
+                style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}>
+                {formType.dataVillage.map((e, k) => (
+                  <Picker.Item key={k} label={e.label} value={e.value} />
+                ))}
+              </Picker>
+              :
+              <Picker
+                style={{ width: Dimensions.get('window').width - 30, marginLeft: 20, marginRight: 20 }}
+                onValueChange={disct => setData({ ...data, village: disct })}
+                selectedValue={data.village}
+              >
+                <Picker.Item label={"Select Option"} value="" />
+              </Picker>
+            }
           </View>
           <View style={styles.input}>
             <TextInput label="Employee Salary" mode="outlined"
