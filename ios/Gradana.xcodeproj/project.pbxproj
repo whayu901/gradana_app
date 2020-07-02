@@ -14,6 +14,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1ACA0105EA88BB169253F8A6 /* libPods-Gradana-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 540657B3395ED1F5F98B1D8B /* libPods-Gradana-tvOSTests.a */; };
+		2810B33B24AB81A900990FC2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2810B33A24AB81A900990FC2 /* StoreKit.framework */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -54,6 +55,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Gradana/main.m; sourceTree = "<group>"; };
 		1B07B0E0F9217779DE4BE49D /* Pods-Gradana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gradana.release.xcconfig"; path = "Target Support Files/Pods-Gradana/Pods-Gradana.release.xcconfig"; sourceTree = "<group>"; };
 		26A7D339D4DEB4B8CE79E963 /* Pods-Gradana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gradana.debug.xcconfig"; path = "Target Support Files/Pods-Gradana/Pods-Gradana.debug.xcconfig"; sourceTree = "<group>"; };
+		2810B33A24AB81A900990FC2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2D02E47B1E0B4A5D006451C7 /* Gradana-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gradana-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Gradana-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gradana-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F02721C5D0A40ED0E32B832 /* libPods-Gradana.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gradana.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5CA567C3DFB2D3484108ED /* libPods-Gradana.a in Frameworks */,
+				2810B33B24AB81A900990FC2 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +142,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2810B33A24AB81A900990FC2 /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				4F02721C5D0A40ED0E32B832 /* libPods-Gradana.a */,

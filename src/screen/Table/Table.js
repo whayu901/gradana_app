@@ -1,27 +1,26 @@
 import React, { useEffect } from 'react';
-import { View, SafeAreaView, Text } from "react-native";
+import { View, SafeAreaView, Text } from 'react-native';
 import { DataTable } from 'react-native-paper';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getTable } from '../../redux/actions';
-import styles from './styles'
+import styles from './styles';
 
 const Table = () => {
-
   const dispatch = useDispatch();
-  const tableType = useSelector(state => state.Table);
+  const tableType = useSelector((state) => state.Table);
 
   useEffect(() => {
     dispatch(getTable(1));
-  }, [])
+  }, []);
 
   const _currentPage = () => {
-    dispatch(getTable(tableType.page - 1))
-  }
+    dispatch(getTable(tableType.page - 1));
+  };
 
   const _nextPage = () => {
-    dispatch(getTable(tableType.page + 1))
-  }
+    dispatch(getTable(tableType.page + 1));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,13 +39,26 @@ const Table = () => {
               <DataTable.Cell numeric>{data.employee_salary}</DataTable.Cell>
             </DataTable.Row>
           ))}
-          <View
-            style={styles.pagination}>
-            <Text style={{ color: tableType.page !== 1 ? "red" : "grey" }}
-              onPress={() => { tableType.page !== 1 ? _currentPage() : null }}>Prev</Text>
-            <Text>{tableType.page} of {tableType.totalPage}</Text>
-            <Text style={{ color: tableType.page !== tableType.totalPage ? "red" : "grey" }}
-              onPress={() => { tableType.page !== tableType.totalPage ? _nextPage() : null }}>Next</Text>
+          <View style={styles.pagination}>
+            <Text
+              style={{ color: tableType.page !== 1 ? 'red' : 'grey' }}
+              onPress={() => {
+                tableType.page !== 1 ? _currentPage() : null;
+              }}>
+              Prev
+            </Text>
+            <Text>
+              {tableType.page} of {tableType.totalPage}
+            </Text>
+            <Text
+              style={{
+                color: tableType.page !== tableType.totalPage ? 'red' : 'grey',
+              }}
+              onPress={() => {
+                tableType.page !== tableType.totalPage ? _nextPage() : null;
+              }}>
+              Next
+            </Text>
           </View>
         </DataTable>
       </View>
